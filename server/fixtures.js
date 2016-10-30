@@ -52,4 +52,3 @@ if (Posts.find().count() === 0) {
     submitted: new Date(now - 12 * 3600 * 1000)
   });
 }
-server
