@@ -1,8 +1,8 @@
-// Données préenregistrées
+// Données de préinstallation
 if (Posts.find().count() === 0) {
   var now = new Date().getTime();
 
-  // create two users
+  // Créer deux utilisateurs
   var tomId = Meteor.users.insert({
     profile: { name: 'Tom Coleman' }
   });
@@ -18,7 +18,9 @@ if (Posts.find().count() === 0) {
     author: sacha.profile.name,
     url: 'http://sachagreif.com/introducing-telescope/',
     submitted: new Date(now - 7 * 3600 * 1000),
-    commentsCount: 2
+    commentsCount: 2,
+    upvoters: [],
+    votes: 0
   });
 
   Comments.insert({
@@ -26,7 +28,7 @@ if (Posts.find().count() === 0) {
     userId: tom._id,
     author: tom.profile.name,
     submitted: new Date(now - 5 * 3600 * 1000),
-    body: 'Interesting project Sacha, can I get involved?'
+    body: "C'est un projet intéressant Sacha, est-ce-que je peux y participer ?"
   });
 
   Comments.insert({
@@ -43,7 +45,9 @@ if (Posts.find().count() === 0) {
     author: tom.profile.name,
     url: 'http://meteor.com',
     submitted: new Date(now - 10 * 3600 * 1000),
-    commentsCount: 0
+    commentsCount: 0,
+    upvoters: [],
+    votes: 0
   });
 
   Posts.insert({
@@ -52,9 +56,10 @@ if (Posts.find().count() === 0) {
     author: tom.profile.name,
     url: 'http://themeteorbook.com',
     submitted: new Date(now - 12 * 3600 * 1000),
-    commentsCount: 0
+    commentsCount: 0,
+    upvoters: [],
+    votes: 0
   });
-
 
   for (var i = 0; i < 10; i++) {
     Posts.insert({
@@ -62,8 +67,10 @@ if (Posts.find().count() === 0) {
       author: sacha.profile.name,
       userId: sacha._id,
       url: 'http://google.com/?q=test-' + i,
-      submitted: new Date(now - i * 3600 * 1000),
-      commentsCount: 0
+      submitted: new Date(now - i * 3600 * 1000 + 1),
+      commentsCount: 0,
+      upvoters: [],
+      votes: 0
     });
   }
 }
